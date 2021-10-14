@@ -1,11 +1,10 @@
+require("dotenv").config();
 //Base url
 const base_url = "https://api.rawg.io/api/";
 
-//https://api.rawg.io/api/games?key=a54b254175494a8c9e35f5825ed95b07
-// my key "a54b254175494a8c9e35f5825ed95b07";
+//https://api.rawg.io/api/games?key=
 
-const myKey = "a54b254175494a8c9e35f5825ed95b07";
-
+const mykey = process.env.REACT_APP_GAME_KEY;
 //Getting the month
 const getCurrentMonth = () => {
   const month = new Date().getMonth() + 1;
@@ -35,6 +34,6 @@ const lastYear = `${currentYear - 1}-${currentMonth}-${currentDay}`;
 const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
 
 //popular games
-const popular_games = `games?key=${myKey}&dates=${lastYear},${currentDate}&ordering=-rating&page-size=10`;
+const popular_games = `games?key=${mykey}&dates=${lastYear},${currentDate}&ordering=-rating&page-size=10`;
 
 export const popularGamesURL = () => `${base_url}${popular_games}`;
