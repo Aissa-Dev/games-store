@@ -34,10 +34,20 @@ const lastYear = `${currentYear - 1}-${currentMonth}-${currentDay}`;
 const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
 
 //popular games
-const popular_games = `games?key=${mykey}&dates=${lastYear},${currentDate}&ordering=-rating&page-size=10`;
-const upcoming_games = `games?key=${mykey}&dates=${currentDate},${nextYear}&ordering=-added&page-size=10`;
-const new_games = `games?key=${mykey}&dates=${lastYear},${currentDate}&ordering=-released&page-size=10`;
+const popular_games = `games?dates=${lastYear},${currentDate}&ordering=-rating&page_size=10&key=${mykey}`;
+const upcoming_games = `games?dates=${currentDate},${nextYear}&ordering=-added&page_size=10&key=${mykey}`;
+const new_games = `games?dates=${lastYear},${currentDate}&ordering=-released&page_size=10&key=${mykey}`;
 
 export const upcomingGamesURL = () => `${base_url}${upcoming_games}`;
 export const popularGamesURL = () => `${base_url}${popular_games}`;
 export const newGamesURL = () => `${base_url}${new_games}`;
+
+//  GAME DETAILS
+export const gameDetailsURL = (game_id) =>
+  `${base_url}games/${game_id}?key=${mykey}`;
+
+export const gameScreenshotsURL = (game_id) =>
+  `${base_url}games/${game_id}/screenshots?key=${mykey}`;
+//https://api.rawg.io/api/games?key=**&dates=2021-10-15,2022-10-15&ordering=-added&page_size=10
+//game details https://api.rawg.io/api/games/638650?key=**
+// screenshots https://api.rawg.io/api/games/602357/screenshots?key=**
