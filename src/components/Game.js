@@ -1,15 +1,19 @@
 import React from "react";
+//redux
 import { useDispatch } from "react-redux";
 
 //Styling and animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+
+//Actions
 import { loadDetail } from "../actions/detailAction";
 
 const Game = ({ name, image, id, released }) => {
   const dispatch = useDispatch();
   const handleDetails = () => {
     dispatch(loadDetail(id));
+    console.log("loaded");
   };
   return (
     <StyledGame onClick={handleDetails}>
@@ -33,7 +37,21 @@ const StyledGame = styled(motion.div)`
     object-fit: cover;
   }
 
+  overflow: hidden;
+
   &:hover {
     cursor: pointer;
   }
 `;
+
+/* img {
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+  } */
+/* img {
+    width: 100%;
+    height: 100%;
+    object-fit: initial;
+  }
+  overflow: hidden; */

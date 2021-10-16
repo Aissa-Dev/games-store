@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
         }
     }
     &::-webkit-scrollbar-thumb{
-            background-color: green;
+            background-color: darkgray;
         }
     body{
         font-family: 'Montserrat', sans-serif;
@@ -40,7 +40,9 @@ const GlobalStyles = createGlobalStyle`
         color:#333;
     }
 
-
+    img{
+        display: block;
+    }
 
     ${
       "" /* .logo{
