@@ -49,6 +49,7 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Abril Fatface', cursive;
     } */
     }
+
 `;
 
 export default GlobalStyles;

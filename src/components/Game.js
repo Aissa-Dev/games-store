@@ -14,18 +14,23 @@ import { Link } from "react-router-dom";
 import { smallImage } from "../util";
 
 const Game = ({ name, image, id, released }) => {
+  const stringId = id.toString();
   const dispatch = useDispatch();
   const handleDetails = () => {
     document.body.style.overflow = "hidden";
     dispatch(loadDetail(id));
   };
   return (
-    <StyledGame onClick={handleDetails}>
+    <StyledGame layoutId={stringId} onClick={handleDetails}>
       <Link to={`/game/${id}`}>
-        <h3>{name}</h3>
+        <motion.h3 layoutId={`title ${stringId}`}>{name}</motion.h3>
         <p>{released}</p>
         {/* <img src={image} alt={name} /> */}
-        <img src={smallImage(image, 640)} alt={name} />
+        <motion.img
+          layoutId={`image ${stringId}`}
+          src={smallImage(image, 640)}
+          alt={name}
+        />
       </Link>
     </StyledGame>
   );
@@ -46,7 +51,7 @@ const StyledGame = styled(motion.div)`
 
   overflow: hidden;
 
-  cursor: pointer;
+  /* cursor: pointer; */
 `;
 
 /* img {

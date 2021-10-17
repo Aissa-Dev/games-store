@@ -1,6 +1,6 @@
 export const smallImage = (imagePath, size) => {
   if (imagePath === null) return "";
-  console.log("imagePath : ", imagePath);
+  //console.log("imagePath : ", imagePath);
   const image = imagePath.match(/media\/screenshots/)
     ? imagePath.replace(
         "media/screenshots",

@@ -9,12 +9,13 @@ import { useHistory } from "react-router-dom";
 
 import { smallImage } from "../util";
 
-function GameDetail() {
+function GameDetail({ pathId }) {
   const history = useHistory();
+  const stringPathId = pathId[2];
   //exit detail
   const exitDetailHundler = (e) => {
     const element = e.target;
-    console.log(element);
+    //console.log(element);
     if (element.classList.contains("shadow")) {
       document.body.style.overflow = "auto";
       history.push("/");
@@ -28,10 +29,13 @@ function GameDetail() {
     <>
       {!isLoading && (
         <CardShadow className="shadow" onClick={exitDetailHundler}>
-          <Detail>
+          <Detail layoutId={stringPathId}>
             <Stats>
               <div className="rating">
-                <h3>{game.name}</h3>
+                <motion.h3 layoutId={`title ${stringPathId}`}>
+                  {game.name}
+                </motion.h3>
+
                 <p>Rating : {game.rating}</p>
               </div>
               <Info>
@@ -44,7 +48,8 @@ function GameDetail() {
               </Info>
             </Stats>
             <Media>
-              <img
+              <motion.img
+                layoutId={`image ${stringPathId}`}
                 src={smallImage(game.background_image, 1280)}
                 alt={game.background_image}
               />
@@ -76,7 +81,7 @@ const CardShadow = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  border: 2px solid red;
+  z-index: 5;
   &::-webkit-scrollbar {
     width: 0.5rem;
   }
@@ -96,6 +101,7 @@ const Detail = styled(motion.div)`
   position: absolute;
   left: 10%;
   color: black;
+  z-index: 10;
   img {
     width: 100%;
   }
