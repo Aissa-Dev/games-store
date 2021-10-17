@@ -9,17 +9,24 @@ import { motion } from "framer-motion";
 //Actions
 import { loadDetail } from "../actions/detailAction";
 
+import { Link } from "react-router-dom";
+
+import { smallImage } from "../util";
+
 const Game = ({ name, image, id, released }) => {
   const dispatch = useDispatch();
   const handleDetails = () => {
+    document.body.style.overflow = "hidden";
     dispatch(loadDetail(id));
-    console.log("loaded");
   };
   return (
     <StyledGame onClick={handleDetails}>
-      <h3>{name}</h3>
-      <p>{released}</p>
-      <img src={image} alt={name} />
+      <Link to={`/game/${id}`}>
+        <h3>{name}</h3>
+        <p>{released}</p>
+        {/* <img src={image} alt={name} /> */}
+        <img src={smallImage(image, 640)} alt={name} />
+      </Link>
     </StyledGame>
   );
 };
@@ -39,9 +46,7 @@ const StyledGame = styled(motion.div)`
 
   overflow: hidden;
 
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 /* img {
