@@ -26,6 +26,7 @@ function Home() {
   const { popular, newGames, upcoming, searched } = useSelector(
     (state) => state.games
   );
+  document.body.style.overflowY = "auto";
 
   return (
     <GameList variants={fadeIn} initial="hidden" animate="show">
