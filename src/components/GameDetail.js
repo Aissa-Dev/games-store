@@ -81,17 +81,24 @@ function GameDetail({ pathId }) {
 
   const getStars = () => {
     const stars = [];
-    const rating = Math.floor(game.rating);
-    for (let i = 1; i <= rating; i++) {
-      if (i <= rating) {
-        stars.push(<img key={i} src={fullStar} alt="full Star" />);
-      }
+    const rating = game.rating;
+    const ratingFloor = Math.floor(rating);
+    const nbrFullStars = ratingFloor;
+    const nbrHalfStars = rating > nbrFullStars ? 1 : 0;
+    const nbrFullAndHalf = nbrFullStars + nbrHalfStars;
+    const nbrEmptyStars = 5 - nbrFullAndHalf;
+
+    //fill full
+    for (let i = 1; i <= nbrFullStars; i++) {
+      stars.push(<img key={"f" + i} src={fullStar} alt="full Star" />);
     }
-    if (rating < game.rating) {
-      stars.push(<img key={"i"} src={halfStar} alt="half Star" />);
+    //fill half
+    if (nbrHalfStars) {
+      stars.push(<img key={"h"} src={halfStar} alt="half Star" />);
     }
-    for (let i = rating + 1; i < 5; i++) {
-      stars.push(<img key={i} src={emptyStar} alt="empty Star" />);
+    //fill empty
+    for (let i = 1; i <= nbrEmptyStars; i++) {
+      stars.push(<img key={"e" + i} src={emptyStar} alt="empty Star" />);
     }
 
     return stars;
@@ -112,7 +119,7 @@ function GameDetail({ pathId }) {
                   {game.name}
                 </motion.h3>
 
-                <p>Rating : {game.rating}</p>
+                <p>Rating : {game.rating}/5</p>
                 {getStars()}
               </div>
               <Info>
