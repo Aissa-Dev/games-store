@@ -6,6 +6,7 @@ import { loadGames } from "../actions/gamesAction";
 //Styling and animation
 import styled from "styled-components";
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
+import { fadeIn } from "../animation";
 
 import { useLocation } from "react-router-dom";
 //components
@@ -27,7 +28,7 @@ function Home() {
   );
 
   return (
-    <GameList>
+    <GameList variants={fadeIn} initial="hidden" animate="show">
       <AnimateSharedLayout type="crossfade">
         <AnimatePresence>
           {pathId.length > 2 && <GameDetail pathId={pathId} />}
@@ -102,9 +103,14 @@ function Home() {
 }
 
 const GameList = styled(motion.div)`
-  padding: 0rem 5rem;
+  padding: 0rem 5rem 5rem 5rem;
   h2 {
     padding: 3rem 0rem;
+  }
+
+  @media (max-width: 800px) {
+    padding: 1rem;
+    text-align: center;
   }
 `;
 
@@ -114,6 +120,10 @@ const Games = styled(motion.div)`
   grid-template-columns: repeat(auto-fit, minmax(424px, 1fr));
   grid-column-gap: 3rem;
   grid-row-gap: 5rem;
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export default Home;

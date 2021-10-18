@@ -134,22 +134,26 @@ function GameDetail({ pathId }) {
               </Info>
             </Stats>
             <Media>
-              <motion.img
-                layoutId={`image ${stringPathId}`}
-                src={smallImage(game.background_image, 1280)}
-                alt={game.background_image}
-              />
+              <a href={game.background_image} target="_blank">
+                <motion.img
+                  layoutId={`image ${stringPathId}`}
+                  src={smallImage(game.background_image, 1280)}
+                  alt={game.background_image}
+                />
+              </a>
             </Media>
             <Description>
               <p>{game.description_raw}</p>
             </Description>
             <Gallery>
               {screenshots.results.map((screen) => (
-                <img
-                  key={screen.id}
-                  src={smallImage(screen.image, 1280)}
-                  alt={screen.image}
-                />
+                <a href={screen.image} target="_blank">
+                  <img
+                    key={screen.id}
+                    src={smallImage(screen.image, 1280)}
+                    alt={screen.image}
+                  />
+                </a>
               ))}
             </Gallery>
           </Detail>

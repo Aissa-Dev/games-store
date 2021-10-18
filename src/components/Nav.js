@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import logo from "../img/logo.svg";
-
+import { fadeIn } from "../animation";
 //redux
 import { useDispatch } from "react-redux";
 import { fetchSearch, clearSearch } from "../actions/gamesAction";
@@ -14,13 +14,15 @@ function Nav() {
   const handleSearch = (e) => {
     e.preventDefault();
     dispatch(fetchSearch(textInput));
+    setTextInput("");
   };
 
   const clearSearchedGames = () => {
     dispatch(clearSearch());
+    setTextInput("");
   };
   return (
-    <StyledNav>
+    <StyledNav variants={fadeIn} initial="hidden" animate="show">
       <Logo>
         <div onClick={clearSearchedGames}>
           <img src={logo} alt="" />
@@ -46,6 +48,7 @@ function Nav() {
 const StyledNav = styled(motion.div)`
   padding: 3rem 5rem;
   text-align: center;
+
   input {
     width: 30%;
     font-size: 1.5rem;
@@ -62,6 +65,22 @@ const StyledNav = styled(motion.div)`
     background: #ff7676;
     color: white;
   }
+  @media (max-width: 1300px) {
+    input {
+      width: 50%;
+    }
+  }
+  @media (max-width: 800px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    input {
+      width: 100%;
+    }
+    button {
+      width: 100%;
+      margin-top: 2rem;
+    }
+  }
 `;
 
 const Logo = styled(motion.div)`
@@ -69,7 +88,7 @@ const Logo = styled(motion.div)`
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    width: 30%;
+
     padding: 1rem;
     cursor: pointer;
   }

@@ -55,6 +55,12 @@ const GlobalStyles = createGlobalStyle`
     } */
     }
 
+    @media (max-width: 6800px) {
+    h1, h2{
+        font-size: 2rem;
+    }
+  }
+
 `;
 
 export default GlobalStyles;
