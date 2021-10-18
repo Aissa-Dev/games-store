@@ -240,6 +240,7 @@ const Stats = styled(motion.div)`
 
 const Info = styled(motion.div)`
   text-align: center;
+  min-width: 20%;
 `;
 
 const Platforms = styled(motion.div)`
@@ -278,7 +279,6 @@ const Description = styled(motion.div)`
     p {
       font-size: 0.8rem;
     }
-    border: 2px slid red;
   }
 `;
 
