@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { smallImage } from "../util";
 
+import { Link } from "react-router-dom";
+
 //Images
 import apple from "../img/apple.svg";
 import gamepad from "../img/gamepad.svg";
@@ -158,6 +160,9 @@ function GameDetail({ pathId }) {
             </Media>
             <Description>
               <p>{game.description_raw}</p>
+              <a href={game.website} target="_blank">
+                <h3>Link</h3>
+              </a>
             </Description>
             <Gallery>
               {screenshots.results.map((screen) => (
@@ -273,7 +278,11 @@ const Media = styled(motion.div)`
 const Description = styled(motion.div)`
   margin: 5rem 0rem;
   text-align: justify;
-
+  a h3 {
+    text-align: center;
+    color: blue;
+    font-size: 2rem;
+  }
   @media (max-width: 1400px) {
     text-align: center;
     p {
