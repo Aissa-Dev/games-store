@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //Styling and animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -24,6 +24,12 @@ function GameDetail({ pathId }) {
   const history = useHistory();
   const stringPathId = pathId[2];
   //exit detail
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
   const exitDetailHundler = (e) => {
     const element = e.target;
     //console.log(element);
@@ -136,6 +142,7 @@ function GameDetail({ pathId }) {
             <Media>
               <a href={game.background_image} target="_blank">
                 <motion.img
+                  className="media-image"
                   layoutId={`image ${stringPathId}`}
                   src={smallImage(game.background_image, 1280)}
                   alt={game.background_image}
@@ -147,7 +154,7 @@ function GameDetail({ pathId }) {
             </Description>
             <Gallery>
               {screenshots.results.map((screen) => (
-                <a href={screen.image} target="_blank">
+                <a href={screen.image} target="_blank" key={screen.image}>
                   <img
                     key={screen.id}
                     src={smallImage(screen.image, 1280)}
@@ -195,6 +202,15 @@ const Detail = styled(motion.div)`
   img {
     width: 100%;
   }
+  @media (max-width: 1400px) {
+    width: 95%;
+    padding: 2rem 1rem;
+    text-align: center;
+    left: 2.5%;
+    h3 {
+      font-size: 1rem;
+    }
+  }
 `;
 
 const Stats = styled(motion.div)`
@@ -207,6 +223,12 @@ const Stats = styled(motion.div)`
     height: 2rem;
     display: inline;
   }
+
+  @media (max-width: 1400px) {
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const Info = styled(motion.div)`
@@ -218,15 +240,18 @@ const Platforms = styled(motion.div)`
     display: flex;
     justify-content: space-evenly;
     img {
-      margin-left: 3rem;
+      margin-right: 1rem;
     }
   }
   .platform-name {
     width: 100%;
     height: 2rem;
   }
-  .platform-image {
-    fill: green;
+  div {
+    @media (max-width: 1400px) {
+      max-width: 100%;
+      display: block;
+    }
   }
 `;
 
@@ -240,6 +265,14 @@ const Media = styled(motion.div)`
 const Description = styled(motion.div)`
   margin: 5rem 0rem;
   text-align: justify;
+
+  @media (max-width: 1400px) {
+    text-align: center;
+    p {
+      font-size: 0.8rem;
+    }
+    border: 2px slid red;
+  }
 `;
 
 const Gallery = styled(motion.div)`

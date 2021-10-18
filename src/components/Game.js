@@ -18,7 +18,7 @@ const Game = ({ name, image, id, released }) => {
   const stringId = id.toString();
   const dispatch = useDispatch();
   const handleDetails = () => {
-    document.body.style.overflow = "hidden";
+    //document.body.style.overflow = "hidden";
     dispatch(loadDetail(id));
   };
   return (

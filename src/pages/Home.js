@@ -26,7 +26,6 @@ function Home() {
   const { popular, newGames, upcoming, searched } = useSelector(
     (state) => state.games
   );
-  document.body.style.overflowY = "auto";
 
   return (
     <GameList variants={fadeIn} initial="hidden" animate="show">
@@ -108,7 +107,6 @@ const GameList = styled(motion.div)`
   h2 {
     padding: 3rem 0rem;
   }
-
   @media (max-width: 800px) {
     padding: 1rem;
     text-align: center;
