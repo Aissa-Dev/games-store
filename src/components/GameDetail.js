@@ -15,8 +15,10 @@ import nintendo from "../img/nintendo.svg";
 import playstation from "../img/playstation.svg";
 import stream from "../img/steam.svg";
 import xbox from "../img/xbox.svg";
-import emptyStar from "../img/star-empty.png";
-import fullStar from "../img/star-full.png";
+import emptyStar from "../img/star-empty.svg";
+import fullStar from "../img/star-full.svg";
+import halfStar from "../img/star-half.svg";
+import android from "../img/android.svg";
 
 function GameDetail({ pathId }) {
   const history = useHistory();
@@ -43,6 +45,8 @@ function GameDetail({ pathId }) {
       platform = "nintendo";
     } else if (platform.toLowerCase().includes("os".toLowerCase())) {
       platform = "ios";
+    } else if (platform.toLowerCase().includes("android".toLowerCase())) {
+      platform = "android";
     } else {
       platform = "f";
     }
@@ -58,6 +62,8 @@ function GameDetail({ pathId }) {
         return nintendo;
       case "ios":
         return apple;
+      case "android":
+        return android;
       default:
         return gamepad;
     }
@@ -65,6 +71,24 @@ function GameDetail({ pathId }) {
   const [platformName, setPlatformName] = useState("");
   const handleMouseOver = (name) => {
     setPlatformName(name);
+  };
+
+  const getStars = () => {
+    const stars = [];
+    const rating = Math.floor(game.rating);
+    for (let i = 1; i <= rating; i++) {
+      if (i <= rating) {
+        stars.push(<img key={i} src={fullStar} alt="full Star" />);
+      }
+    }
+    if (rating < game.rating) {
+      stars.push(<img key={"i"} src={halfStar} alt="half Star" />);
+    }
+    for (let i = rating + 1; i < 5; i++) {
+      stars.push(<img key={i} src={emptyStar} alt="empty Star" />);
+    }
+
+    return stars;
   };
   //data
   const { game, screenshots, isLoading } = useSelector(
@@ -83,6 +107,7 @@ function GameDetail({ pathId }) {
                 </motion.h3>
 
                 <p>Rating : {game.rating}</p>
+                {getStars()}
               </div>
               <Info>
                 <h3>Platforms</h3>
@@ -91,6 +116,7 @@ function GameDetail({ pathId }) {
                     {game.platforms.map((data) => (
                       //<h3 key={data.platform.id}>{data.platform.name}</h3>
                       <img
+                        className="platform-image"
                         key={data.platform.id}
                         src={getPlatform(data.platform.name)}
                         onMouseOver={() => handleMouseOver(data.platform.name)}
@@ -171,6 +197,12 @@ const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  img {
+    width: 2rem;
+    height: 2rem;
+    display: inline;
+  }
 `;
 
 const Info = styled(motion.div)`
@@ -188,6 +220,9 @@ const Platforms = styled(motion.div)`
   .platform-name {
     width: 100%;
     height: 2rem;
+  }
+  .platform-image {
+    fill: green;
   }
 `;
 

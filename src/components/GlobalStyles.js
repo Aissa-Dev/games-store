@@ -44,6 +44,11 @@ const GlobalStyles = createGlobalStyle`
         display: block;
     }
 
+    input{
+        font-family:'Montserrat', sans-serif;
+        font-weight: bold;
+    }
+
     ${
       "" /* .logo{
         font-family: 'Abril Fatface', cursive;

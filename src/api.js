@@ -46,8 +46,13 @@ export const newGamesURL = () => `${base_url}${new_games}`;
 export const gameDetailsURL = (game_id) =>
   `${base_url}games/${game_id}?key=${mykey}`;
 
+//Game screenShots
 export const gameScreenshotsURL = (game_id) =>
   `${base_url}games/${game_id}/screenshots?key=${mykey}`;
 //https://api.rawg.io/api/games?key=**&dates=2021-10-15,2022-10-15&ordering=-added&page_size=10
 //game details https://api.rawg.io/api/games/638650?key=**
 // screenshots https://api.rawg.io/api/games/602357/screenshots?key=**
+
+//Searched Game
+export const searchedGameURL = (game_name) =>
+  `${base_url}games?search=${game_name}&page_size=10&key=${mykey}`;
